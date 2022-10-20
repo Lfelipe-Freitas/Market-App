@@ -1,0 +1,15 @@
+<div class="card">
+  <img [src]="prod.imagem" alt="" class="card-image-top">
+
+  <div class="card-body">
+    <h5 class="card-title">{{prod.nome}}</h5>
+    <h6 class="card-subtitle text-muted">R${{prod.preco}}</h6>
+    <span class="badge mb-1 bg-danger">
+      {{prod.estoque}} unidades restantes
+    </span>
+    <p class="card-text text-truncate">{{prod.descricao}}</p>
+    <button class="btn btn-sm btn-danger">
+      Esconder produto
+    </button>
+  </div>
+</div>
