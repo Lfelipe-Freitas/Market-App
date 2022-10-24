@@ -35,8 +35,8 @@
 </div>
   <section class="produtos">
     <!--<produto-card [prod]="p"></produto-card>-->
-
-    <produto-card *ngFor="let p of produtos" [prod]="p"></produto-card>
+    <!--$event captura os dados do objeto que vou deletar-->
+    <produto-card *ngFor="let p of produtos" [prod]="p" (deletar)="deletarProduto($event)"></produto-card>
 
   </section>
 </main>

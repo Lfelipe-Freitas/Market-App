@@ -1,15 +1,31 @@
-<div class="card">
+<div class="card" *ngIf="mostrarProduto == true; else conteudoAlternativo">
   <img [src]="prod.imagem" alt="" class="card-image-top">
 
   <div class="card-body">
     <h5 class="card-title">{{prod.nome}}</h5>
     <h6 class="card-subtitle text-muted">R${{prod.preco}}</h6>
-    <span class="badge mb-1 bg-danger">
+    <span class="badge mb-1" [ngClass]="{
+      'bg-danger': prod.estoque <= 10,
+      'bg-warning': prod.estoque > 10 && prod.estoque <= 30,
+      'bg-primary': prod.estoque > 30 && prod.estoque <= 100,
+      'bg-success': prod.estoque > 100
+    }">
       {{prod.estoque}} unidades restantes
     </span>
     <p class="card-text text-truncate">{{prod.descricao}}</p>
-    <button class="btn btn-sm btn-danger">
+    <button class="btn btn-sm btn-danger" (click)="mostrar()">
       Esconder produto
+    </button>
+    <button class="favicon ms-4" (click)="emitirEventoDeletar()">
+      <img width="30px" src="https://cdn-icons-png.flaticon.com/512/2602/2602735.png" alt="lixo">
     </button>
   </div>
 </div>
+
+<!--ng-template nor permite criar um else de um *ngIf, mas é necessário um gatilho.-->
+<ng-template #conteudoAlternativo> <!--#variavelDeTemplate-->
+  <button class="btn btn-sm btn-danger" (click)="mostrarOculto()">
+    Mostrar produto
+  </button>
+</ng-template>
+

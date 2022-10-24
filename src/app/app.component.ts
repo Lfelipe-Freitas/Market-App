@@ -1,4 +1,4 @@
-import { Produto } from './interfaces/produto';
+import { Produto } from './interfaces/Produto';
 import { Component } from '@angular/core';
 import { ProdutoCardComponent } from './produto-card/produto-card.component';
 
@@ -33,5 +33,10 @@ export class AppComponent {
     this.estoque = 0
     this.preco = 0
     this.imagem = ""
+  }
+
+  deletarProduto(p: Produto): void {
+    const index = this.produtos.indexOf(p)
+    this.produtos.splice(index, 1)
   }
 }
